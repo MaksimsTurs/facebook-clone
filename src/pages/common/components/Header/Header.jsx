@@ -1,35 +1,41 @@
-import './scss/Header.scss';
+import './Header.scss';
 
 import React, { useState, useRef, useEffect } from 'react';
 
-//Modules 
-import axios from 'axios';
-
 //Icons and IMG 
-import logo from '../../imgs/facebook_logo.png';
-import homeicon from '../../imgs/icons/home_icon.png';
-import friendsicon from '../../imgs/icons/friends_icon.png';
-import marketplaceicon from '../../imgs/icons/marketplace_icon.png';
-import videoicon from '../../imgs/icons/video_icon.png';
-import defaultusericon from '../../imgs/icons/default_user_icon.png';
-import messengericon from '../../imgs/icons/messenger_icon.png';
-import notification from '../../imgs/icons/notification_icon.png';
-import plusicon from '../../imgs/icons/plus_icon.png';
-import lupeicon from '../../imgs/icons/loupe_icon.png';
-import arrowicon from '../../imgs/icons/arrow_icon.png';
+import logo from '../../../imgs/facebook_logo.png';
+import homeicon from '../../../imgs/icons/home_icon.png';
+import friendsicon from '../../../imgs/icons/friends_icon.png';
+import marketplaceicon from '../../../imgs/icons/marketplace_icon.png';
+import videoicon from '../../../imgs/icons/video_icon.png';
+import defaultusericon from '../../../imgs/icons/default_user_icon.png';
+import messengericon from '../../../imgs/icons/messenger_icon.png';
+import notification from '../../../imgs/icons/notification_icon.png';
+import plusicon from '../../../imgs/icons/plus_icon.png';
+import lupeicon from '../../../imgs/icons/loupe_icon.png';
+import arrowicon from '../../../imgs/icons/arrow_icon.png';
+
+import NavItems from './components/NavItems';
 
 export default function Header() {
     const [inputActive, setActive] = useState(false);
+    const [activeLink, setActiveLink] = useState(0);
+
+    const linkiconarray = [homeicon, friendsicon, marketplaceicon, videoicon]
 
     const searchRef = useRef();
 
+    async function fetchdata() {
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+        const data = response.json();
+        console.log(data)
+    }
+
     useEffect(() => {
-        document.addEventListener('click', event => import(/* webpackChunkName: "outsideclickhandler" */ '../helpers/outsideclickhandler.js').then(module => {
+        document.addEventListener('click', event => import(/* webpackChunkName: "outsideclickhandler" */ '../../helpers/outsideclickhandler.js').then(module => {
             module.default(searchRef, event) ? true : setActive(false);
         }));
     }, [inputActive])
-
-    const imgarr = [homeicon, friendsicon, marketplaceicon, videoicon];
 
     return (
         <header className="header__container">
@@ -58,9 +64,11 @@ export default function Header() {
             }>
             </div>
             <nav className="header__nav-container">
-                {
-                    imgarr.map((items, index) => <NavigationItems key={index} props={items} />)
-                }
+                <ul className="header__nav-list">
+                    {
+                        linkiconarray.map((element, index) => <NavItems isActiveLink={activeLink === index} key={index} activateLink={() => setActiveLink(index)} props={element}/>)
+                    }
+                </ul>
             </nav>
             <div className="header__user-menu">
                 <ul className="header__user-list">
@@ -79,22 +87,5 @@ export default function Header() {
                 </ul>
             </div>
         </header>
-    )
-}
-
-function NavigationItems(props) {
-    const [currentItem, setCurrent] = useState(true);
-
-    return (
-        <>
-            <li className="header__nav-item">
-                <a href='#' className="header__item-link" onClick={() => currentItem ? setCurrent(false) : setCurrent(true)}>
-                    <div className="header__item-content">
-                        <img src={props.props} alt="Home icon" className="header__item-icon" />
-                    </div>
-                </a>
-                <div className={currentItem ? 'underground-inactive' : 'underground-active'}></div>
-            </li>
-        </>
     )
 }

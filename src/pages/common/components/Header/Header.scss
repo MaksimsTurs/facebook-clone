@@ -1,5 +1,5 @@
-@import './mixins.scss';
-@import './variabels.scss';
+@import '../../scss/mixins.scss';
+@import '../../scss/variabels.scss';
 
 
 .header {
@@ -90,40 +90,9 @@
 
     //Header nav container
 
-    &__nav-container {
+    &__nav-list {
         display: flex;
         align-items: center;
-        height: 4.5rem;
-    }
-
-    &__nav-item {
-        position: relative;
-        display: flex;
-        align-items: center;
-
-        height: 100%;
-
-        &:last-child {
-            margin-right: 0rem;
-        }
-
-    }
-
-    &__item-link {
-        padding: 0.5rem 2rem;
-
-        border-radius: $list-item-border-radius;
-        transition: all 0.2s ease;
-        cursor: pointer;
-
-        &:hover {
-            background-color: $list-item-hover-color;
-            transition: all 0.2s ease;
-        }
-    }
-
-    &__item-icon {
-        width: 2rem;
     }
 
     //Header user menu container
