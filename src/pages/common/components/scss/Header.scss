@@ -1,0 +1,203 @@
+@import './mixins.scss';
+@import './variabels.scss';
+
+
+.header {
+
+    //Header contaier
+    &__container {
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: fixed;
+        width: 100%;
+
+        box-shadow: $box-shadow;
+    }
+
+    //Header logo container
+    &__logo-container {
+        position: absolute;
+        left: 0;
+        z-index: 3;
+
+        display: flex;
+        align-items: center;
+
+        padding: 0rem 2rem;
+    }
+
+    &__logo {
+        width: 3rem;
+    }
+
+    &__back-button {
+        position: absolute;
+        top: 10%;
+        width: 3rem;
+        transform: rotate(180deg);
+
+        border-radius: 100%;
+        cursor: pointer;
+        padding: 0.5rem;
+
+
+        &:hover {
+            background-color: rgb(230, 230, 230);
+        }
+    }
+
+    &__search-form {
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+    }
+
+    &__search-input {
+        background-color: $input-background-color;
+        border-radius: $input-border-radius;
+        padding: 0.65rem 0.85rem 0.65rem 2.5rem;
+        margin-left: 1rem;
+
+        &:focus {
+            padding: 0.6rem;
+        }
+    }
+
+    &__search-icon {
+        position: absolute;
+        top: 25%;
+        left: 12%;
+        width: 1.25rem;
+    }
+
+    &__response-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+
+        box-shadow: $box-shadow;
+
+        background-color: white;
+        border-bottom-right-radius: $list-item-border-radius;
+
+        width: 22rem;
+        padding: 5rem 2rem;
+    }
+
+    //Header nav container
+
+    &__nav-container {
+        display: flex;
+        align-items: center;
+        height: 4.5rem;
+    }
+
+    &__nav-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        height: 100%;
+
+        &:last-child {
+            margin-right: 0rem;
+        }
+
+    }
+
+    &__item-link {
+        padding: 0.5rem 2rem;
+
+        border-radius: $list-item-border-radius;
+        transition: all 0.2s ease;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $list-item-hover-color;
+            transition: all 0.2s ease;
+        }
+    }
+
+    &__item-icon {
+        width: 2rem;
+    }
+
+    //Header user menu container
+    &__user-menu {
+        position: absolute;
+        right: 0;
+
+        padding: 0rem 2rem;
+    }
+
+    &__user-list {
+        display: flex;
+        align-items: center;
+    }
+
+    &__user-icon {
+        cursor: pointer;
+        border-radius: 100%;
+        background-color: $list-item-hover-color;
+        padding: 0.5rem;
+        width: 2.5rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: silver;
+            transition: all 0.2s ease;
+        }
+    }
+
+    &__user-item {
+        margin-right: 1rem;
+
+        &:last-child {
+            margin-right: 0rem;
+        }
+    }
+}
+
+.element-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.to-left {
+    transition: all 0.2s ease;
+    left: 10%;
+}
+
+.to-right {
+    transition: all 0.2s ease;
+    opacity: 0;
+    left: 30%;
+}
+
+.underground-inactive {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    padding: 0.1rem;
+    border-radius: 10px;
+
+    width: 100%;
+}
+
+.underground-active {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    padding: 0.1rem;
+    border-radius: 10px;
+
+    width: 100%;
+
+    background-color: #1B74E4;
+}
