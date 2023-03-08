@@ -21,41 +21,47 @@ export default function Header() {
     const [inputActive, setActive] = useState(false);
     const [activeLink, setActiveLink] = useState(0);
 
+    // const [searchedValue, setValue] = useState('');
+    // const [responseArray, setArryItem] = useState([]);
+
     const linkiconarray = [homeicon, friendsicon, marketplaceicon, videoicon]
 
     const searchRef = useRef();
 
-    async function fetchdata() {
-        const response = await fetch('https://jsonplaceholder.typicode.com/todos/1');
-        const data = response.json();
-        console.log(data)
-    }
-
     useEffect(() => {
-        document.addEventListener('click', event => import(/* webpackChunkName: "outsideclickhandler" */ '../../helpers/outsideclickhandler.js').then(module => {
+        document.addEventListener('click', event => import(/* webpackChunkName: "outsideclickhandler" */ '../../helpers/outsideclickhandler.js')
+        .then(module => {
             module.default(searchRef, event) ? true : setActive(false);
         }));
-    }, [inputActive])
+    })
+
+    //? TODO: Create new array for search function
+    // async function searchHandler(event) {
+    //     setValue(event.target.value)
+    //     const response = await fetch(`https://jsonplaceholder.typicode.com/posts?title=${searchedValue.trim().toLowerCase()}`)
+    //     const data = await response.json()
+    //     setArryItem(data);
+    // }
 
     return (
         <header className="header__container">
             <div ref={searchRef} className="header__logo-container">
-                <a className='header__logo-link' href="/">
+                <a href="/" className='header__logo-link'>
                     <img className={inputActive ?
                         'header__logo element-hidden' :
                         'header__logo'
                     } src={logo} alt="Faceboock" />
-                    <img className={inputActive ?
-                        'header__back-button to-left' :
-                        'header__back-button to-right'
-                    } src={arrowicon} alt="Arrow icon" />
                 </a>
+                <img className={inputActive ?
+                    'header__back-button to-left' :
+                    'header__back-button to-right'
+                } src={arrowicon} alt="Arrow icon" onClick={() => setActive(false)} />
                 <form className="header__search-form">
                     <img className={inputActive ?
                         'header__search-icon to-left element-hidden' :
                         'header__search-icon'
                     } src={lupeicon} alt="Lupe icon" />
-                    <input placeholder='Suchen in Faceboock' type="text" className="header__search-input" onClick={() => setActive(true)} />
+                    <input placeholder='Suchen in Faceboock' type="text" className="header__search-input" onClick={() => setActive(true)} /*onChange={searchHandler}*/ />
                 </form>
             </div>
             <div className={inputActive ?
@@ -66,7 +72,7 @@ export default function Header() {
             <nav className="header__nav-container">
                 <ul className="header__nav-list">
                     {
-                        linkiconarray.map((element, index) => <NavItems isActiveLink={activeLink === index} key={index} activateLink={() => setActiveLink(index)} props={element}/>)
+                        linkiconarray.map((element, index) => <NavItems isActiveLink={activeLink === index} key={index} activateLink={() => setActiveLink(index)} props={element} />)
                     }
                 </ul>
             </nav>
