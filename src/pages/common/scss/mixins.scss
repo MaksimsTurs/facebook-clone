@@ -1,1 +1,15 @@
 @import './variabels.scss';
+
+@mixin usericon {
+    cursor: pointer;
+    border-radius: 100%;
+    background-color: silver;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+    width: 2.5rem;
+
+    &:hover {
+        background-color: silver;
+        transition: all 0.2s ease;
+    }
+}

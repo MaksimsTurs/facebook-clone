@@ -8,7 +8,11 @@ export default function Home() {
     return (
         <>
             <Header />
-            <main className="main-home-page"></main>
+            <main className="main-home-page-container">
+                <div className="main-home-page-body">
+                    <UserMenu />
+                </div>
+            </main>
         </>
     )
 }

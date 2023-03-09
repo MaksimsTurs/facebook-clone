@@ -1,2 +1,54 @@
 @import '../../scss/mixins.scss';
 @import '../../scss/variabels.scss';
+
+.user {
+    &__menu-container {
+        position: sticky;
+        left: 0;
+        top: 0;
+        overflow: hidden;
+
+        padding: 1rem 0rem 1rem 1rem;
+        width: 19rem;
+    }
+
+    &__menu-link {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        padding: 0.8rem;
+        transition: all 0.2s ease;
+
+        &:hover {
+            transition: all 0.2s ease;
+            background-color: $list-item-hover-color;
+            border-bottom-left-radius: $list-item-border-radius;
+            border-top-left-radius: $list-item-border-radius;
+        }
+    }
+
+    &__show-more {
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: $list-item-hover-color;
+            border-bottom-left-radius: $list-item-border-radius;
+            border-top-left-radius: $list-item-border-radius;
+        }
+    }
+
+    &__button-icon {
+        width: 2rem;
+        border-radius: 100%;
+        padding: 0.5rem;
+        transform: rotate(180deg);
+        background-color: rgb(238, 238, 238);
+        margin-right: 0.8rem;
+    }
+}
+
+.user-icon {
+    margin-right: 0.8rem;
+    @include usericon();
+}

@@ -61,7 +61,7 @@ export default function Header() {
                         'header__search-icon to-left element-hidden' :
                         'header__search-icon'
                     } src={lupeicon} alt="Lupe icon" />
-                    <input placeholder='Suchen in Faceboock' type="text" className="header__search-input" onClick={() => setActive(true)} /*onChange={searchHandler}*/ />
+                    <input className="header__search-input" placeholder='Suchen in Faceboock' type="text" onClick={() => setActive(true)} /*onChange={searchHandler}*/ />
                 </form>
             </div>
             <div className={inputActive ?
