@@ -19,7 +19,7 @@ module.exports = {
         path: path.resolve(__dirname, 'build'),
         clean: true,
         filename: 'js/index.[contenthash].js',
-        assetModuleFilename: 'assets/[hash]][ext]'
+        assetModuleFilename: 'assets/[hash][ext]'
     },
     resolve: {
         extensions: ['.js', '.jsx']
