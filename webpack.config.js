@@ -3,7 +3,6 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
-const TerserWebpackPlugin = require('terser-webpack-plugin');
 
 const mode = process.env.NODE_ENV || 'development';
 const devmode = mode === 'development';
@@ -26,19 +25,22 @@ module.exports = {
     },
     optimization: {
         splitChunks: {
+            chunks: 'all',
+            minSize: 20000,
+            minRemainingSize: 0,
+            minChunks: 1,
+            maxAsyncRequests: 30,
+            maxInitialRequests: 30,
+            enforceSizeThreshold: 50000,
             cacheGroups: {
-                vendor: {
-                    name: 'modules',
-                    test: /node_modules/,
-                    chunks: 'all',
-                    enforce: true
-                }
-            }
+                Vendors: {
+                    name: 'vendor',
+                    test: /[\\/]node_modules[\\/]/,
+                    priority: -10,
+                    reuseExistingChunk: true,
+                },
+            },
         },
-        minimize: true,
-        minimizer: [new TerserWebpackPlugin({
-            test: /\.(js|jsx)$/i,
-        })],
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -59,7 +61,9 @@ module.exports = {
             {
                 test: /\.(sc|c)ss$/i,
                 use: [
-                    devmode ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    devmode ?
+                        'style-loader' :
+                        MiniCssExtractPlugin.loader,
                     'css-loader',
                     {
                         loader: 'postcss-loader',
@@ -69,7 +73,8 @@ module.exports = {
                             }
                         }
                     },
-                    'sass-loader']
+                    'sass-loader'
+                ]
             },
             {
                 test: /\.(jsx|js)$/,
@@ -91,20 +96,13 @@ module.exports = {
                         options: {
                             mozjpeg: {
                                 progressive: true,
-                            },
-                            optipng: {
-                                enabled: true,
+                                quality: 50
                             },
                             pngquant: {
                                 quality: [0.01, 0.01],
-                                speed: 1
+                                speed: 11,
+                                strip: true
                             },
-                            gifsicle: {
-                                interlaced: false,
-                            },
-                            webp: {
-                                quality: 1
-                            }
                         }
                     },
                 ],

@@ -7,10 +7,9 @@
     "build": "set NODE_ENV=production&&webpack"
   },
   "browserslist": [
-    "> 0.2%",
+    "> 1%",
     "not dead",
-    "not ie <= 11",
-    "not op_mini all"
+    "not ie <= 11"
   ],
   "keywords": [
     "React",
@@ -23,6 +22,7 @@
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
+    "@squoosh/lib": "^0.5.3",
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",

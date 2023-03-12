@@ -1,3 +1,4 @@
+import './Home.scss';
 import React from "react";
 
 //Components 

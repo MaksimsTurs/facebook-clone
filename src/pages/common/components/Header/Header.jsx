@@ -65,7 +65,7 @@ export default function Header() {
             <div ref={searchRef} className="header__logo-container">
                 <a href="/" className='header__logo-link'>
                     <img className={inputActive ?
-                        'header__logo element-hidden' :
+                        'header__logo hidden' :
                         'header__logo'
                     } src={logo} alt="Faceboock" />
                 </a>

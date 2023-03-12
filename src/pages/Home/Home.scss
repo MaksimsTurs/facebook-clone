@@ -1,2 +1,17 @@
-@import '../common/components/scss/variabels.scss';
-@import '../common/components/scss/mixins.scss';
+@import '../common/scss/variabels.scss';
+@import '../common/scss/mixins.scss';
+
+.main-home-page-container {
+    position: absolute;
+    top: 56px;
+
+    background-color: #F0F2F5;
+
+    width: 100%;
+    height: 100%;
+
+    .main-home-page-main {
+        display: flex;
+        justify-content: center;
+    }
+}
