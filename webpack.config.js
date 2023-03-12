@@ -18,7 +18,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build'),
         clean: true,
-        filename: 'js/index.[contenthash].js',
+        filename: 'js/[name].[contenthash].js',
         assetModuleFilename: 'assets/[hash][ext]'
     },
     resolve: {
@@ -26,12 +26,21 @@ module.exports = {
     },
     optimization: {
         splitChunks: {
-            chunks: 'all'
-        }
+            cacheGroups: {
+                vendor: {
+                    name: 'modules',
+                    test: /node_modules/,
+                    chunks: 'all',
+                    enforce: true
+                }
+            }
+        },
+        minimize: true,
+        minimizer: [new TerserWebpackPlugin({
+            test: /\.(js|jsx)$/i,
+        })],
     },
     plugins: [
-        new TerserWebpackPlugin(),
-
         new CleanWebpackPlugin(),
 
         new HTMLWebpackPlugin({
@@ -84,7 +93,7 @@ module.exports = {
                                 progressive: true,
                             },
                             optipng: {
-                                enabled: false,
+                                enabled: true,
                             },
                             pngquant: {
                                 quality: [0.01, 0.01],

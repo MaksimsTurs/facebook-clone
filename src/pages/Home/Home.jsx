@@ -9,8 +9,8 @@ export default function Home() {
         <>
             <Header />
             <main className="main-home-page-container">
-                <div className="main-home-page-body">
-                    <UserMenu />
+                <UserMenu />
+                <div className="main-home-page-main">
                 </div>
             </main>
         </>

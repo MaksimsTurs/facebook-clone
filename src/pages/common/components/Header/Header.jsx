@@ -24,15 +24,32 @@ export default function Header() {
     // const [searchedValue, setValue] = useState('');
     // const [responseArray, setArryItem] = useState([]);
 
-    const linkiconarray = [homeicon, friendsicon, marketplaceicon, videoicon]
-
+    const linkiconarray = [
+        {
+            icon: homeicon,
+            helpers: 'Home'
+        },
+        {
+            icon: friendsicon,
+            helpers: 'Friends'
+        },
+        {
+            icon: videoicon,
+            helpers: 'Videos'
+        },
+        {
+            icon: marketplaceicon,
+            helpers: 'Marketplace'
+        },
+    ]
     const searchRef = useRef();
+
 
     useEffect(() => {
         document.addEventListener('click', event => import(/* webpackChunkName: "outsideclickhandler" */ '../../helpers/outsideclickhandler.js')
-        .then(module => {
-            module.default(searchRef, event) ? true : setActive(false);
-        }));
+            .then(module => {
+                module.default(searchRef, event) ? true : setActive(false);
+            }));
     })
 
     //? TODO: Create new array for search function

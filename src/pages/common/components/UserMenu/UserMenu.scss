@@ -3,13 +3,21 @@
 
 .user {
     &__menu-container {
-        position: sticky;
-        left: 0;
-        top: 0;
-        overflow: hidden;
+        position: fixed;
+        padding: 0.6rem 0rem 1rem 0.6rem;
+        overflow-x: scroll;
+        height: 95%;
+    }
 
-        padding: 1rem 0rem 1rem 1rem;
-        width: 19rem;
+    &__menu-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__menu-list {
+        display: flex;
+        flex-direction: column;
+        width: 22rem;
     }
 
     &__menu-link {
@@ -17,19 +25,9 @@
         align-items: center;
         width: 100%;
 
-        padding: 0.8rem;
+        padding: 0.7rem;
         transition: all 0.2s ease;
-
-        &:hover {
-            transition: all 0.2s ease;
-            background-color: $list-item-hover-color;
-            border-bottom-left-radius: $list-item-border-radius;
-            border-top-left-radius: $list-item-border-radius;
-        }
-    }
-
-    &__show-more {
-        transition: all 0.2s ease;
+        cursor: pointer;
 
         &:hover {
             background-color: $list-item-hover-color;
@@ -41,14 +39,20 @@
     &__button-icon {
         width: 2rem;
         border-radius: 100%;
-        padding: 0.5rem;
+        padding: 0.6rem;
         transform: rotate(180deg);
         background-color: rgb(238, 238, 238);
         margin-right: 0.8rem;
+    }
+
+    &__link-icon {
+        width: 2.4rem;
+        margin-right: 1rem;
     }
 }
 
 .user-icon {
     margin-right: 0.8rem;
     @include usericon();
+    width: 2.4rem !important;
 }
